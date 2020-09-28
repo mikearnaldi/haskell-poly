@@ -4,7 +4,7 @@ module Lib
   )
 where
 
-import Polysemy ( embed, interpret, makeSem, Embed, Sem, Member )
+import Polysemy (Embed, Members, Sem, embed, interpret, makeSem)
 import Polysemy.Input ()
 import Polysemy.Output ()
 
@@ -14,12 +14,12 @@ data Teletype m a where
 
 makeSem ''Teletype
 
-teletypeToIO :: Member (Embed IO) r => Sem (Teletype ': r) a -> Sem r a
+teletypeToIO :: Members '[Embed IO] r => Sem (Teletype ': r) a -> Sem r a
 teletypeToIO = interpret $ \case
   ReadTTY -> embed getLine
   WriteTTY msg -> embed $ putStrLn msg
 
-echo :: Member Teletype r => Sem r ()
+echo :: Members '[Teletype] r => Sem r ()
 echo = do
   i <- readTTY
   case i of
