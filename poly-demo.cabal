@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 0ef8107a121a787fd8850b4bfdb81af571083d3195ad6e09a40f74e31c623681
+-- hash: 8840d87d20997a67028c9b1ea22544235d2dc75c26bffe4a54ec0a52997deb33
 
 name:           poly-demo
 version:        0.1.0.0
@@ -46,7 +46,7 @@ executable poly-demo-exe
   hs-source-dirs:
       app
   default-extensions: TemplateHaskell LambdaCase BlockArguments GADTs FlexibleContexts TypeOperators DataKinds PolyKinds ScopedTypeVariables
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -fplugin=Polysemy.Plugin
   build-depends:
       base >=4.7 && <5
     , poly-demo
@@ -62,7 +62,7 @@ test-suite poly-demo-test
   hs-source-dirs:
       test
   default-extensions: TemplateHaskell LambdaCase BlockArguments GADTs FlexibleContexts TypeOperators DataKinds PolyKinds ScopedTypeVariables
-  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N -fplugin=Polysemy.Plugin
   build-depends:
       base >=4.7 && <5
     , poly-demo
